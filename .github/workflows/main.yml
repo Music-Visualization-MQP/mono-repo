@@ -34,11 +34,14 @@ jobs:
     # - name: Login to DockerHub
     #   run: docker login -u $DOCKER_USER -p $DOCKER_PASS
 
+    # - name: Run Docker
+    #   run: docker run
+
     - name: Build docker images
       # working-directory: ./mono-repo
       run: |
         ls -R
-        docker-compose build
+        docker compose build
 
     - name: Run tests
       run: |
