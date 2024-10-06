@@ -13,7 +13,8 @@ on:
 jobs:
   test:
     name: Run development tests
-    runs-on: ubuntu-latest
+    # runs-on: ubuntu-latest
+    runs-on: windows-latest
     env:
       COMPOSE_FILE: docker-compose.yml
       # DOCKER_USER: ${{ secrets.DOCKER_USER }}
@@ -22,13 +23,16 @@ jobs:
     steps:
     - name: Hello!
       run: echo "Hello, this line is just here to test that actions works as expected, I guess"
+      
     - name: Checkout code
       uses: actions/checkout@v4 # This is very cool we do not need to manually checkout
+
+    - name: Setup environment #NOTE: Apparently lacks the permissions? Is there a different thing that needs to be run on windows? Should the runner be windows?
+      shell: pwsh
+      run: ./envCI.ps1
+
     # - name: Login to DockerHub
     #   run: docker login -u $DOCKER_USER -p $DOCKER_PASS
-
-    - name: Setup environment
-      run: ./envCI.ps1
 
     - name: Build docker images
       # working-directory: ./mono-repo
