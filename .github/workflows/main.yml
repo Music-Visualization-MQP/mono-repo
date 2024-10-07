@@ -39,8 +39,8 @@ jobs:
 
     - name: Build docker images
       # working-directory: ./mono-repo
+              # ls -R
       run: |
-        ls -R
         docker compose build
 
     - name: Run tests
