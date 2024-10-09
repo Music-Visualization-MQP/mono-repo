@@ -19,4 +19,8 @@
         gap: 10px;
         align-items: flex-start;
     }
+    /* input:hover {
+        color: aliceblue;
+        background-color: aqua;
+    } */
 </style>
