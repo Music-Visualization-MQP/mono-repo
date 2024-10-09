@@ -35,6 +35,14 @@
         font-family: "Mattone", sans-serif;
     }
 
+    a:hover {
+        color:rgb(147, 72, 19);
+        /* background-color: aliceblue; */
+    }
+    /* li:hover {
+        fill: whitesmoke;
+    } */
+
     .content {
         margin: 20px;
     }
