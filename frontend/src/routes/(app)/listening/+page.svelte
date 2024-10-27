@@ -8,7 +8,7 @@
 <div class="songs">
     {#if data.songs != null}
         {#each data.songs as song}
-            <Song {song} />
+            <Song {song}/>
         {/each}
     {:else}
         <p>No listening data yet!</p>
