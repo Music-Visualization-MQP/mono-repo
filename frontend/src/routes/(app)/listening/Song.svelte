@@ -5,25 +5,21 @@
         artists: string[]
         album: string
     };
-    let details = false
-    function displayDetails(){
-        details = !details
-        console.log(song.title+" clicked!")
-    }
+    export let popup
 </script>
 
-<div class="song" on:click={displayDetails}>
+<div class="song" on:click={popup}>
     <img src={song.album_art_path} alt={`The album art for ${song.album}.`}>
     <p class="title">{song.title}</p>
     <p class="artist">{song.artists.join(', ')}</p>
     <p class="album">{song.album}</p>
     
 </div>
-{#if details}
+<!-- {#if details}
 <div class="details">
     <p>details go here!</p>
 </div>
-{/if}
+{/if} -->
 
 <style>
     .song {
@@ -32,6 +28,7 @@
         align-items: center;
         padding: 5px;
         border: 2px solid var(--text);
+        cursor: pointer;
     }
 
     img {
