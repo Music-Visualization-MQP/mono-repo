@@ -3,6 +3,8 @@ import type { Actions } from './$types'
 
 export const load: PageServerLoad = async ({locals: { supabase, session } }) => {
     if (session !== null) {
+        console.log("I made it past session being null!")
+
         const { data: user, error } = await supabase
         .from('profiles')
         .select(`updated_at, username, full_name, website, avatar_url`)
