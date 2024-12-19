@@ -12,9 +12,7 @@ export const load: PageServerLoad = async ({locals: { supabase, session } }) => 
     .select(`updated_at, username, full_name, website, avatar_url`)
     .eq('id', session.user.id)
     .single()
-    if (error) throw error;
-
-    if (!user) {
+    if (error && error.code == 'PGRST116') {
         user = {
             updated_at: null,
             username: null,
@@ -22,7 +20,7 @@ export const load: PageServerLoad = async ({locals: { supabase, session } }) => 
             website: null,
             avatar_url: null
         }
-    }
+    } else if (error) throw error;
 
     const email = session.user.email ?? null;
 
@@ -51,7 +49,15 @@ export const actions: Actions = {
         .select(`updated_at, username, full_name, website, avatar_url`)
         .eq('id', session.user.id)
         .single()
-        if (get_error || !user) throw get_error;
+        if (get_error || !user) {
+            user = {
+                updated_at: null,
+                username: null,
+                full_name: null,
+                website: null,
+                avatar_url: null
+            }
+        }
 
         // make sure update is necessary
         if (user.username == update.username
